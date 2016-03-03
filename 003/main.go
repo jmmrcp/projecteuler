@@ -2,12 +2,16 @@ package main
 
 import "fmt"
 
+// primefactor devuelve el mayor factor primo de un numero.
+//
+// primefactor uint -> uint
+// primefactor(13192)
+// 29
 func primefactor(numero uint) uint {
 	var i uint
 	for numero != 1 {
 		for i = 2; i < numero+1; i++ {
 			if numero%i == 0 {
-				//fmt.Printf("%d / %d = %d.\n", numero, i, numero/i)
 				break
 			}
 		}

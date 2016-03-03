@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"time"
 )
 
 // esPrimo no devuelve si es primo o no un numero.
@@ -64,7 +65,7 @@ func esPrimo2(n uint) bool {
 func genNumeros(n uint) uint {
 	var numero, contador, respuesta uint = 3, 1, 0
 	for contador < n {
-		if esPrimo(numero) {
+		if esPrimo2(numero) {
 			contador++
 			respuesta = numero
 		}
@@ -74,5 +75,8 @@ func genNumeros(n uint) uint {
 }
 
 func main() {
+	t0 := time.Now()
 	fmt.Println(genNumeros(10001)) // 104743
+	t1 := time.Now()
+	fmt.Printf("Time: %v.\n", t1.Sub(t0))
 }
