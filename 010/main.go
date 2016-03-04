@@ -1,33 +1,64 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
-// primos genera numeros primos
+// esPrimo devuelve si un numero n es primo o no.
 //
-//primos -> int
-// primos()
-// 1
-func primos(n int) {
-	c := 1 // cantidad de numeros primos a generar
-	p := 2 // primer numero primo
-	d := 2 // numero para comparar
-	for c <= n {
-		if p%d == 0 {
-			if p == d {
-				fmt.Printf("%v, ", p)
-				//return p
-				c++
-			}
-			d = 2
-			p++
-		} else {
-			d++ // iterador de numeros (numero /2 numero/3 numero/ ...)
+// esPrimo uint -> bool
+// esPrimo(12)
+// false
+func esPrimo(n uint) bool {
+	var i uint
+	f := float64(n)
+	if n < 2 {
+		return false
+	}
+	if n == 2 {
+		return true
+	}
+	if n%2 == 0 {
+		return false
+	}
+	if n < 9 {
+		return true
+	}
+	if n%3 == 0 {
+		return false
+	}
+	r := (math.Sqrt(f + 0.0)) + 1
+
+	for i = 5; float64(i) <= r; i += 6 {
+		if n%i == 0 {
+			return false
+		}
+		if n%(i+2) == 0 {
+			return false
 		}
 	}
-	p--
-	fmt.Printf("Valor de c: %v, p: %v, y d: %v", c, p, d)
+	return true
 }
+
+// sumaPrimos devuelve la suma de los numeros primos hasta n.
+//
+// sumaPrimos uint -> uint64
+// sumaPrimos(100)
+// 1060
+func sumaPrimos(n uint) uint64 {
+	var i uint
+	var suma uint64
+	for i = 1; i < n; i++ {
+		if esPrimo(i) {
+			suma += uint64(i)
+		}
+	}
+	return suma
+}
+
 func main() {
-	primos(10)
+	suma := sumaPrimos(2000000)
+	fmt.Printf("Suma de los numeros primos: %v.\n", suma) // 142913828922
 
 }
