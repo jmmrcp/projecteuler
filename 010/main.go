@@ -59,6 +59,7 @@ func sumaPrimos(n uint) uint64 {
 
 func main() {
 	suma := sumaPrimos(2000000)
+    fmt.Println()
 	fmt.Printf("Suma de los numeros primos: %v.\n", suma) // 142913828922
 
 }
